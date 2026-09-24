@@ -1,0 +1,13 @@
+{
+  "n_samples": 256,
+  "metrics": {
+    "ks_continuous": 0.09508089675687441,
+    "tv_discrete": 0.09047377203801786,
+    "corr_mae": 0.09130387132920187,
+    "utility_algo_acc": 0.7012987012987013
+  },
+  "baseline_metrics": {
+    "utility_base_acc": 0.5584415584415584
+  },
+  "explanation": "Gaussian copula generator vs independent-marginal baseline on 256 real samples (70/30 stratified split). Fidelity: lower ks_continuous, tv_discrete, corr_mae is better. Utility: higher accuracy is better. The copula preserves cross-feature correlations; the baseline does not. No temporal ordering; stratification prevents class-imbalance leakage."
+}

@@ -1,0 +1,21 @@
+{
+  "tests": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "status": "passed",
+  "python": "3.13.15",
+  "isolation": "separate_uid_seccomp_no_network_resource_limits_not_container",
+  "source_sha256": {
+    "main.py": "f7ffffb2b4c6a24fdfb43d6965c66cf26e3bbede1411fae2174bd33c81136d44",
+    "test_contract.py": "a01b4c343204cec27ce4a9d92bf2a030be1432f03279d697b4027a945d9b6540",
+    "requirements.txt": "d42e398defc40185470a89c9a94f705f68d90879f098cc260b3ee1e1405b4925",
+    ".gitignore": "95e5b9881836504ef66f4e94b5cec34cb1a72758153dc28844d1bbe167b32a0f",
+    "data.py": "fe8f9108271558581641dd47cb6a3bbb358f5a624bbe9efce0c0866ad087270d",
+    "app.py": "b054f05524c2104ae95e80677d583e6cf3d8e146e4b2752652c2331c590336d2",
+    "test_project.py": "72b9aed060d1bb110d655c090931c64235b19cd8eacb4066e6eee7db56b3850c"
+  },
+  "test_output": "........................                                                 [100%]\n-------- generated xml file: /tmp/qwen-check-r49lwodb/output/junit.xml ---------\n24 passed in 0.84s\n",
+  "demo_output": "{\n  \"n_samples\": 256,\n  \"metrics\": {\n    \"ks_continuous\": 0.09508089675687441,\n    \"tv_discrete\": 0.09047377203801786,\n    \"corr_mae\": 0.09130387132920187,\n    \"utility_algo_acc\": 0.7012987012987013\n  },\n  \"baseline_metrics\": {\n    \"utility_base_acc\": 0.5584415584415584\n  },\n  \"explanation\": \"Gaussian copula generator vs independent-marginal baseline on 256 real samples (70/30 stratified split). Fidelity: lower ks_continuous, tv_discrete, corr_mae is better. Utility: higher accuracy is better. The copula preserves cross-feature correlations; the baseline does not. No temporal ordering; stratification prevents class-imbalance leakage.\"\n}\n",
+  "seed": 42
+}

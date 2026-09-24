@@ -1,0 +1,17 @@
+{
+  "slug": "gaussian-copula-synthetic-data-eval",
+  "title": "Gaussian Copula Synthetic Data: Fidelity and Utility",
+  "description": "Compares a Gaussian copula generator against independent marginal sampling on 4-feature tabular data, scoring distribution fidelity (KS, correlation, TV) and downstream LR accuracy.",
+  "novelty": "Prior projects evaluate classifiers or stream processors on fixed data; this evaluates the generation step itself, measuring both statistical fidelity of synthetic samples and their practical utility for a downstream task.",
+  "method": "Algorithm (Gaussian copula): fit per-feature marginals (Normal for 2 continuous, empirical-CDF for 2 discrete of 3 and 4 levels), rank-transform all 4 features plus the binary label to standard-normal space, fit a 5x5 covariance, draw n_synthetic=256 samples, inverse-transform back. Baseline (independent marginals): sample each feature and the label from its own fitted marginal, discarding all cross-feature correlations. Validation: seeded 70/30 stratified split of the 'real' data; synthetic sets match training-set size; all fidelity metrics compare synthetic vs the held-out real test; utility trains a LogisticRegression on the synthetic set and scores on the real test. Metrics (direction): ks_continuous (lower=better, mean two-sample KS over the 2 continuous features), tv_discrete (lower=better, mean total-variation distance over the 2 discrete features), corr_mae (lower=better, MAE over the 6 pairwise correlations of the 4 features), utility_algo_acc and utility_base_acc (higher=better, LR accuracy on real test). No temporal ordering applies (i.i.d. synthetic data); stratification prevents class imbalance leakage.",
+  "dependencies": [
+    "numpy",
+    "scipy",
+    "scikit-learn"
+  ],
+  "acceptance_tests": [
+    "make_dataset(seed=42, n_samples=256) returns X with shape (256, 4) and y with shape (256,) containing only values 0 and 1; make_dataset(seed=43, n_samples=256) produces an X array that is not element-wise equal; make_dataset(n_samples=16) raises ValueError.",
+    "run_experiment(seed=42, n_samples=256) returns a JSON-serializable dict whose n_samples equals 256, whose metrics is a non-empty dict of finite floats (at least 4 keys), and whose baseline_metrics is a non-empty dict of finite floats (at least 2 keys).",
+    "run_experiment(seed=42, n_samples=64) returns n_samples == 64 and its metrics dict differs from the n_samples=256 output, confirming the sample-size parameter is propagated through data generation and evaluation."
+  ]
+}
